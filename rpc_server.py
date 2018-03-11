@@ -11,4 +11,4 @@ def penjumlahan(a,b):
 # Daftarkan fungsi yang akan dipanggil client
 server.register_function(penjumlahan, 'penjumlahan')
 # Jalankan server
-server.server_forever()
+server.serve_forever()
