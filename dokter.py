@@ -2,10 +2,10 @@
 import paho.mqtt.client as mqtt_client
 
 #inisiaslsasi client sbg publisher
-sub = mqtt_client.Client()
+dok = mqtt_client.Client()
 
 #koneksikan ke broker
-sub.connect("127.0.0.1", 1883)
+dok.connect("127.0.0.1", 1883)
 
 def handle_message(mqttc, obj , msg):
 	#dapatkan topik dan payloadnya
@@ -14,12 +14,12 @@ def handle_message(mqttc, obj , msg):
 	payload = payload.decode('ascii')
 	#cetaak ke layar
 	print("topik : "+topic+ " Payload : "+payload)
-
+	saran = input("saran : ")
 #daftarkan fungsi untuk event on_message
-sub.on_message = handle_message
+dok.on_message = handle_message
 
-#subscribe ke topic
-sub.subscribe("/sensor/+/1")
-
+dok.subscribe("/sensor/pasien/1")
+#dokscribe ke topic
+dok.publisher("/sensor/dok/#", saran)
 #loop forever
-sub.loop_forever()
+dok.loop_forever()
